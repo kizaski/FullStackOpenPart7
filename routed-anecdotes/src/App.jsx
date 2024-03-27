@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, Routes, Route, useParams, useMatch } from 'react-router-dom'
+import Notification from './Notification'
 
 const Menu = () => {
   const padding = {
@@ -47,7 +48,7 @@ const About = () => (
     <em>An anecdote is a brief, revealing account of an individual person or an incident.
       Occasionally humorous, anecdotes differ from jokes because their primary purpose is not simply to provoke laughter but to reveal a truth more general than the brief tale itself,
       such as to characterize a person by delineating a specific quirk or trait, to communicate an abstract idea about a person, place, or thing through the concrete details of a short narrative.
-      An anecdote is "a story with a point."</em>
+      An anecdote is &quot;a story with a point.&quot;</em>
 
     <p>Software engineering is full of excellent anecdotes, at this app you can find the best and add more.</p>
   </div>
@@ -75,6 +76,7 @@ const CreateNew = (props) => {
       info,
       votes: 0
     })
+    props.onAdd('new anecdote created')
   }
 
   return (
@@ -91,7 +93,7 @@ const CreateNew = (props) => {
         </div>
         <div>
           url for more info
-          <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} />
+          <input name='info' value={info} onChange={(e) => setInfo(e.target.value)} />
         </div>
         <button>create</button>
       </form>
@@ -117,7 +119,7 @@ const App = () => {
       id: 2
     }
   ])
-
+  
   const [notification, setNotification] = useState('')
 
   const addNew = (anecdote) => {
@@ -144,15 +146,25 @@ const App = () => {
     ? anecdotes.find(note => note.id === Number(match.params.id))
     : null
 
+  const onAddNew = ( message ) => {
+    setNotification(message)
+    setTimeout( () =>
+    {
+      setNotification( '' )
+    }, 3000 )
+  }
+
   return (
     <div>
       <h1>Software anecdotes</h1>
       <Menu />
 
+      <Notification message={ notification } />
+
       <Routes>
         <Route path="/anecdotes/:id" element={<Anecdote anecdote={anecdote} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/create" element={<CreateNew addNew={addNew} />} />
+        <Route path="/create" element={<CreateNew addNew={addNew} onAdd={onAddNew}/>} />
         <Route path="/" element={<AnecdoteList anecdotes={anecdotes} />} />
       </Routes>
 
