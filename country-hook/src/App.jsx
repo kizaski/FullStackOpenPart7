@@ -17,17 +17,48 @@ const useField = (type) => {
 
 const useCountry = (name) => {
   const [country, setCountry] = useState(null)
+  const [found, setFound] = useState(false)
 
-  useEffect(() => {})
+  const fetchApi = async () => {
+    if(name){
+      try {
+        // console.log(name)
+        const response = await fetch(`https://restcountries.com/v3.1/name/${name}`)
+        if (!response.ok) {
+          throw new Error('Failed to fetch country data');
+        }
+  
+        const data = await response.json()
+        // console.log(data)
 
-  return country
+        if (data.length > 0) {
+          setCountry(data[0])
+          setFound(true)
+          // console.log(country)
+        }
+  
+      } catch (error) {
+        console.error('Error fetching country data:', error)
+        setCountry(null)
+        setFound(false)
+      }
+    }
+  }
+
+  useEffect( () => {
+    fetchApi()
+  }, [name])
+
+  return { data: country, found }
 }
 
 const Country = ({ country }) => {
+  // console.log('country in Country component',country.data)
   if (!country) {
     return null
   }
 
+  console.log('country.found',country.found)
   if (!country.found) {
     return (
       <div>
@@ -38,10 +69,10 @@ const Country = ({ country }) => {
 
   return (
     <div>
-      <h3>{country.data.name} </h3>
-      <div>capital {country.data.capital} </div>
+      <h3>{country.data.name.common} </h3>
+      <div>capital {country.data.capital[0]} </div>
       <div>population {country.data.population}</div> 
-      <img src={country.data.flag} height='100' alt={`flag of ${country.data.name}`}/>  
+      <img src={country.data.flags.png} height='100' alt={`flag of ${country.data.name.common}`}/>  
     </div>
   )
 }
