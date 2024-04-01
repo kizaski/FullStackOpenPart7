@@ -18,10 +18,23 @@ const useField = (type) => {
 const useResource = (baseUrl) => {
   const [resources, setResources] = useState([])
 
-  // ...
+  useEffect(() => {
+    axios.get(baseUrl)
+      .then(response => {
+        setResources(response.data)
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error)
+      })
+  }, [baseUrl])
 
-  const create = (resource) => {
-    // ...
+  const create = async (resource) => {
+    try {
+      const response = await axios.post(baseUrl, resource)
+      setResources([...resources, response.data])
+    } catch (error) {
+      console.error('Error creating resource:', error)
+    }
   }
 
   const service = {
@@ -44,11 +57,14 @@ const App = () => {
   const handleNoteSubmit = (event) => {
     event.preventDefault()
     noteService.create({ content: content.value })
+    content.onChange({ target: { value: '' } }) // Clear input after submission
   }
  
   const handlePersonSubmit = (event) => {
     event.preventDefault()
-    personService.create({ name: name.value, number: number.value})
+    personService.create({ name: name.value, number: number.value })
+    name.onChange({ target: { value: '' } }) // Clear input after submission
+    number.onChange({ target: { value: '' } }) // Clear input after submission
   }
 
   return (
