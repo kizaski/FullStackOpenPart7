@@ -7,6 +7,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "lint": "eslint .",
+    "prettier:write": "prettier . --write",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "start:test": "cross-env NODE_ENV=test nodemon index.js"
   },
@@ -14,7 +15,10 @@
   "license": "ISC",
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "eslint": "^8.52.0",
     "nodemon": "^3.0.1",
+    "prettier": "^3.1.0",
+    "prettier-eslint": "^16.1.2",
     "supertest": "^6.3.4"
   },
   "dependencies": {
