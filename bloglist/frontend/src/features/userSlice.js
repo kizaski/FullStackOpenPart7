@@ -3,7 +3,7 @@ import loginService from '../services/login'
 
 const initialState = null
 
-const userLogin = createAsyncThunk('blogs/fetchBlogs', async (credentials) => {
+const userLogin = createAsyncThunk('user/userLogin', async (credentials) => {
   return await loginService.login(credentials)
 })
 
