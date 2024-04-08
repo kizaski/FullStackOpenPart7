@@ -6,11 +6,16 @@ import Togglable from './components/Togglable'
 import NewBlogForm from './components/NewBlogForm'
 import blogService from './services/blogs'
 import loginService from './services/login'
+import { setNotificationWithTimeout } from './features/notificationSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
+  const dispatch = useDispatch()
+
   const [blogs, setBlogs] = useState([])
-  const [message, setMessage] = useState(null)
-  const [messageType, setMessageType] = useState('')
+
+  const notification = useSelector((state) => state.notification)
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
@@ -60,12 +65,13 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setMessageType('error')
-      setMessage('Wrong credentials')
-      setTimeout(() => {
-        setMessage(null)
-        setMessageType('')
-      }, 5000)
+      dispatch(
+        setNotificationWithTimeout({
+          message: 'Wrong credentials',
+          type: 'error',
+          timeout: 3000,
+        }),
+      )
     }
   }
 
@@ -96,23 +102,19 @@ const App = () => {
 
       setBlogs([...blogs, newblog])
 
-      setMessageType('info')
-      setMessage(`A new blog ${newblog.title} by ${newblog.author} is added`)
-      setTimeout(() => {
-        setMessage(null)
-        setMessageType('')
-      }, 5000)
+      dispatch(
+        setNotificationWithTimeout(
+          `A new blog ${newblog.title} by ${newblog.author} is added`,
+          'info',
+          3000,
+        ),
+      )
 
       setTitle('')
       setAuthor('')
       setUrl('')
     } catch (exception) {
-      setMessageType('error')
-      setMessage('Error creating blog.')
-      setTimeout(() => {
-        setMessage(null)
-        setMessageType('')
-      }, 5000)
+      dispatch(setNotificationWithTimeout('Error creating blog.', 'info', 3000))
     }
   }
 
@@ -129,19 +131,21 @@ const App = () => {
       const blogs = await blogService.getAll()
       setBlogs(blogs)
 
-      setMessageType('info')
-      setMessage(`The blog ${blog.title} by ${blog.author} is deleted`)
-      setTimeout(() => {
-        setMessage(null)
-        setMessageType('')
-      }, 5000)
+      dispatch(
+        setNotificationWithTimeout(
+          `The blog ${blog.title} by ${blog.author} is deleted`,
+          'info',
+          3000,
+        ),
+      )
     } catch (exception) {
-      setMessageType('error')
-      setMessage(`Error deleting blog. ${exception}`)
-      setTimeout(() => {
-        setMessage(null)
-        setMessageType('')
-      }, 5000)
+      dispatch(
+        setNotificationWithTimeout(
+          `Error deleting blog. ${exception}`,
+          'error',
+          3000,
+        ),
+      )
     }
   }
 
@@ -175,7 +179,7 @@ const App = () => {
 
   return (
     <div>
-      <Notification message={message} type={messageType} />
+      <Notification message={notification.message} type={notification.type} />
 
       {user === null && loginForm()}
       {user !== null && (
