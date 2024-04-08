@@ -109,18 +109,24 @@ const App = () => {
       dispatch(setBlogs(blogs))
 
       dispatch(
-        setNotificationWithTimeout(
-          `A new blog ${newblog.title} by ${newblog.author} is added`,
-          'info',
-          3000,
-        ),
+        setNotificationWithTimeout({
+          message: `A new blog ${newblog.title} by ${newblog.author} is added`,
+          type: 'info',
+          timeout: 3000,
+        }),
       )
 
       setTitle('')
       setAuthor('')
       setUrl('')
     } catch (exception) {
-      dispatch(setNotificationWithTimeout('Error creating blog.', 'info', 3000))
+      dispatch(
+        setNotificationWithTimeout({
+          message: 'Error creating blog.',
+          type: 'info',
+          timeout: 3000,
+        }),
+      )
     }
   }
 
@@ -135,22 +141,22 @@ const App = () => {
       }
       await blogService.remove(id)
       const blogs = await blogService.getAll()
-      setBlogs(blogs)
+      dispatch(setBlogs(blogs))
 
       dispatch(
-        setNotificationWithTimeout(
-          `The blog ${blog.title} by ${blog.author} is deleted`,
-          'info',
-          3000,
-        ),
+        setNotificationWithTimeout({
+          message: `The blog ${blog.title} by ${blog.author} is deleted`,
+          type: 'info',
+          timeout: 3000,
+        }),
       )
     } catch (exception) {
       dispatch(
-        setNotificationWithTimeout(
-          `Error deleting blog. ${exception}`,
-          'error',
-          3000,
-        ),
+        setNotificationWithTimeout({
+          message: `Error deleting blog. ${exception}`,
+          type: 'error',
+          timeout: 3000,
+        }),
       )
     }
   }
@@ -159,7 +165,7 @@ const App = () => {
     try {
       await blogService.update(blog.id, blog)
       const blogs = await blogService.getAll()
-      setBlogs(blogs.sort((a, b) => b.likes - a.likes))
+      dispatch(setBlogs(blogs.sort((a, b) => b.likes - a.likes)))
     } catch (exception) {
       console.log(`error updating blog, exception: ${exception}`)
     }
