@@ -9,6 +9,7 @@ import loginService from './services/login'
 import { setNotificationWithTimeout } from './features/notificationSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBlogs } from './features/blogsSlice'
+import { setUser, userLogin } from './features/userSlice'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const App = () => {
     return state.blogs
   })
 
-  const [user, setUser] = useState(null)
+  const user = useSelector((state) => state.user)
 
   const notification = useSelector((state) => state.notification)
 
@@ -38,16 +39,16 @@ const App = () => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      setUser(user)
+      dispatch(setUser(user))
       blogService.setToken(user.token)
     }
-  }, [])
+  }, [dispatch])
 
   const handleLogout = async (event) => {
     event.preventDefault()
 
     window.localStorage.removeItem('loggedBlogappUser')
-    setUser(null)
+    dispatch(setUser(null))
     blogService.setToken(null)
   }
 
@@ -62,7 +63,7 @@ const App = () => {
 
       window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
       blogService.setToken(user.token)
-      setUser(user)
+      dispatch(setUser(user))
       console.log(user)
       setUsername('')
       setPassword('')
