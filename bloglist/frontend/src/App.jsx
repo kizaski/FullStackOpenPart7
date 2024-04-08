@@ -79,18 +79,6 @@ const App = () => {
     }
   }
 
-  const loginForm = () => (
-    <Togglable buttonLabel="login" buttonHideLabel="cancel">
-      <LoginForm
-        username={username}
-        password={password}
-        handleUsernameChange={({ target }) => setUsername(target.value)}
-        handlePasswordChange={({ target }) => setPassword(target.value)}
-        handleSubmit={handleLogin}
-      />
-    </Togglable>
-  )
-
   const handleNewBlog = async (event) => {
     event.preventDefault()
 
@@ -168,36 +156,41 @@ const App = () => {
     }
   }
 
-  const newBlogForm = () => (
-    <Togglable
-      buttonLabel="new blog"
-      buttonHideLabel="cancel"
-      ref={blogFormRef}
-    >
-      <NewBlogForm
-        handleSubmit={handleNewBlog}
-        handleTitleChange={({ target }) => setTitle(target.value)}
-        titleVal={title}
-        handleAuthorChange={({ target }) => setAuthor(target.value)}
-        authorVal={author}
-        handleUrlChange={({ target }) => setUrl(target.value)}
-        urlVal={url}
-      />
-    </Togglable>
-  )
-
   return (
     <div>
       <Notification message={notification.message} type={notification.type} />
 
-      {user === null && loginForm()}
-      {user !== null && (
+      {user === null ? (
+        <Togglable buttonLabel="login" buttonHideLabel="cancel">
+          <LoginForm
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleLogin}
+          />
+        </Togglable>
+      ) : (
         <div>
           <div>
             <div>{user.name} logged in.</div>
             <button onClick={handleLogout}>logout</button>
           </div>
-          <div>{newBlogForm()}</div>
+          <Togglable
+            buttonLabel="new blog"
+            buttonHideLabel="cancel"
+            ref={blogFormRef}
+          >
+            <NewBlogForm
+              handleSubmit={handleNewBlog}
+              handleTitleChange={({ target }) => setTitle(target.value)}
+              titleVal={title}
+              handleAuthorChange={({ target }) => setAuthor(target.value)}
+              authorVal={author}
+              handleUrlChange={({ target }) => setUrl(target.value)}
+              urlVal={url}
+            />
+          </Togglable>
         </div>
       )}
 
