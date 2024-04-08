@@ -8,11 +8,16 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import { setNotificationWithTimeout } from './features/notificationSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { setBlogs, setBlogsAction } from './features/blogsSlice'
 
 const App = () => {
   const dispatch = useDispatch()
 
-  const [blogs, setBlogs] = useState([])
+  const blogs = useSelector((state) => {
+    console.log('logging ', state)
+    return state.blogs
+  })
+
   const [user, setUser] = useState(null)
 
   const notification = useSelector((state) => state.notification)
@@ -27,10 +32,11 @@ const App = () => {
 
   useEffect(() => {
     blogService.getAll().then((blogsObj) => {
+      console.log('logging ', blogs)
       const blogsArr = Array.from(blogsObj)
-      setBlogs(blogsArr.sort((a, b) => b.likes - a.likes))
+      dispatch(setBlogs(blogsArr.sort((a, b) => b.likes - a.likes)))
     })
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
@@ -101,6 +107,7 @@ const App = () => {
       })
 
       setBlogs([...blogs, newblog])
+      dispatch(setBlogs(blogs))
 
       dispatch(
         setNotificationWithTimeout(

@@ -1,4 +1,3 @@
-// notificationSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 const initialState = {
@@ -6,7 +5,7 @@ const initialState = {
   type: '',
 }
 
-export const setNotificationWithTimeout = createAsyncThunk(
+const setNotificationWithTimeout = createAsyncThunk(
   'notification/setNotificationWithTimeout',
   async ({ message, type, timeout }, { dispatch }) => {
     dispatch(setNotification({ message, type }))
@@ -47,5 +46,7 @@ const notificationSlice = createSlice({
 })
 
 export const { setNotification, clearNotification } = notificationSlice.actions
+
+export { setNotificationWithTimeout }
 
 export default notificationSlice.reducer
