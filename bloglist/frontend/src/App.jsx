@@ -4,12 +4,14 @@ import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 import NewBlogForm from './components/NewBlogForm'
+import Users from './components/Users'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import { setNotificationWithTimeout } from './features/notificationSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBlogs, createBlog } from './features/blogsSlice'
 import { setUser } from './features/userSlice'
+import { Link, Route, Routes } from 'react-router-dom'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -159,6 +161,15 @@ const App = () => {
   return (
     <div>
       <Notification message={notification.message} type={notification.type} />
+
+      <div>
+        <Link to="/users">users</Link>
+      </div>
+
+      <Routes>
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/users" element={<Users />} />
+      </Routes>
 
       {user === null ? (
         <Togglable buttonLabel="login" buttonHideLabel="cancel">
