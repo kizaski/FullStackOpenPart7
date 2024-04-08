@@ -13,12 +13,12 @@ const App = () => {
   const dispatch = useDispatch()
 
   const [blogs, setBlogs] = useState([])
+  const [user, setUser] = useState(null)
 
   const notification = useSelector((state) => state.notification)
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
