@@ -9,6 +9,17 @@ const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
   return blogs
 })
 
+const createBlog = createAsyncThunk(
+  'blogs/createBlog',
+  async (blog, thunkAPI) => {
+    const { user } = thunkAPI.getState()
+    blog.user = user.id
+
+    const newBlog = await blogsService.create(blog)
+    return newBlog
+  },
+)
+
 const blogsSlice = createSlice({
   name: 'blogs',
   initialState,
@@ -28,11 +39,14 @@ const blogsSlice = createSlice({
       .addCase(fetchBlogs.rejected, (state, action) => {
         // Handle rejected state
       })
+      .addCase(createBlog.fulfilled, (state, action) => {
+        return [...state, action.payload]
+      })
   },
 })
 
 export const { setBlogs: setBlogsAction } = blogsSlice.actions
 
-export { fetchBlogs }
+export { fetchBlogs, createBlog }
 
 export default blogsSlice.reducer

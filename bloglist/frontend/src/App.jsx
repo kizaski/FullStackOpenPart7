@@ -8,8 +8,8 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import { setNotificationWithTimeout } from './features/notificationSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchBlogs } from './features/blogsSlice'
-import { setUser, userLogin } from './features/userSlice'
+import { fetchBlogs, createBlog, removeBlog } from './features/blogsSlice'
+import { setUser } from './features/userSlice'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -63,8 +63,9 @@ const App = () => {
 
       window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
       blogService.setToken(user.token)
+
       dispatch(setUser(user))
-      console.log(user)
+
       setUsername('')
       setPassword('')
     } catch (exception) {
@@ -96,15 +97,14 @@ const App = () => {
     blogFormRef.current.toggleVisibility()
 
     try {
-      // TODO move to blogsSlice
-      const newblog = await blogService.create({
+      const newblog = {
         title: title,
         author: author,
         url: url,
         user: user.id,
-      })
+      }
 
-      dispatch(fetchBlogs(blogs))
+      dispatch(createBlog(newblog))
 
       dispatch(
         setNotificationWithTimeout({
@@ -137,7 +137,7 @@ const App = () => {
       ) {
         return
       }
-      await blogService.remove(id) // TODO move to blogsSlice
+      await blogService.remove(id)
 
       dispatch(fetchBlogs(blogs))
 
@@ -161,7 +161,7 @@ const App = () => {
 
   const handleUpdateBlog = async (blog) => {
     try {
-      await blogService.update(blog.id, blog) // TODO move to blogsSlice
+      await blogService.update(blog.id, blog)
       dispatch(fetchBlogs())
     } catch (exception) {
       console.log(`error updating blog, exception: ${exception}`)

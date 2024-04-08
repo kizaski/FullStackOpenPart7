@@ -29,21 +29,19 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
       <div className="blog-title">{blog.title}</div>
       <button onClick={() => setVisible(!visible)}>
         {visible ? 'hide' : 'show'}
-      </button>{' '}
+      </button>
       <br />
       {visible && (
         <div>
           <div>
-            {blog.url} <br />{' '}
+            {blog.url} <br />
           </div>
           <div className="blog-likes">
-            {' '}
-            likes: <span>{likes}</span> <button onClick={addLike}>like</button>{' '}
-            <br />{' '}
+            likes: <span>{likes}</span> <button onClick={addLike}>like</button>
+            <br />
           </div>
           <div className="blog-author">
-            {' '}
-            Author: <span>{blog.author}</span> <br />{' '}
+            Author: <span>{blog.author}</span> <br />
           </div>
           {user && blog.user && blog.user.username === user.username && (
             <div>
@@ -52,7 +50,7 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
                 onClick={() => deleteBlog(blog.id, blog)}
               >
                 delete blog
-              </button>{' '}
+              </button>
               <br />
             </div>
           )}
