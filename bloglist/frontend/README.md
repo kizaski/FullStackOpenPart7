@@ -1,4 +1,4 @@
-To start frontend run ``npm run dev`` and to run the backend ``npm start`` in [FullStackOpenPart4](https://github.com/kizaski/FullStackOpenPart4)
+To start frontend run `npm run dev` and to run the backend `npm start` in [FullStackOpenPart4](https://github.com/kizaski/FullStackOpenPart4)
 
 # React + Vite
 

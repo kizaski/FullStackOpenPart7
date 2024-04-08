@@ -10,8 +10,8 @@ describe('Blog app', () => {
       data: {
         name: 'Matti Luukkainen',
         username: 'mluukkai',
-        password: 'salainen'
-      }
+        password: 'salainen',
+      },
     })
 
     await page.goto('http://localhost:5173')
@@ -49,7 +49,7 @@ describe('Blog app', () => {
       const localStorage = await page.evaluate(() => {
         return JSON.parse(JSON.stringify(window.localStorage))
       })
-      
+
       await expect(localStorage).toBeDefined()
     })
 
@@ -77,6 +77,4 @@ describe('Blog app', () => {
       await expect(localStorage).toEqual({})
     })
   })
-
-  
 })

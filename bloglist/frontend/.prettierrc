@@ -4,13 +4,6 @@
   "endOfLine": "lf",
   "singleQuote": true,
   "semi": false,
-  "eqeqeq": true,
-  "objectCurlySpacing": true,
-  "arrowSpacing": {
-    "before": true,
-    "after": true
-  },
-  "jsxBracketSameLine": false,
   "jsxSingleQuote": false,
-  "noUnusedVars": false
+  "bracketSameLine": false
 }

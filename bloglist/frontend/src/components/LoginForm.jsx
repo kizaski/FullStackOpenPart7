@@ -1,22 +1,21 @@
-const LoginForm = ( {
+const LoginForm = ({
   handleSubmit,
   handleUsernameChange,
   handlePasswordChange,
   username,
-  password
-} ) =>
-{
+  password,
+}) => {
   return (
     <div>
       <h2>Login</h2>
 
-      <form onSubmit={ handleSubmit } id="login-form">
+      <form onSubmit={handleSubmit} id="login-form">
         <div>
           <label>username</label>
           <input
             id="username-input"
-            value={ username }
-            onChange={ handleUsernameChange }
+            value={username}
+            onChange={handleUsernameChange}
           />
         </div>
         <div>
@@ -24,8 +23,8 @@ const LoginForm = ( {
           <input
             id="password-input"
             type="password"
-            value={ password }
-            onChange={ handlePasswordChange }
+            value={password}
+            onChange={handlePasswordChange}
           />
         </div>
         <button type="submit">login</button>

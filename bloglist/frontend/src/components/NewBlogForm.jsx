@@ -1,43 +1,41 @@
-const newBlogForm = ( {
+const newBlogForm = ({
   handleSubmit,
   handleTitleChange,
   titleVal,
   handleAuthorChange,
   authorVal,
   handleUrlChange,
-  urlVal } ) =>
-{
+  urlVal,
+}) => {
   return (
     <div>
-      <h2>
-                Create new blog
-      </h2>
-      <form onSubmit={ handleSubmit }>
+      <h2>Create new blog</h2>
+      <form onSubmit={handleSubmit}>
         <div>
-                    title
+          title
           <input
             type="text"
-            value={ titleVal }
+            value={titleVal}
             name="Title"
-            onChange={ handleTitleChange }
+            onChange={handleTitleChange}
           />
         </div>
         <div>
-                    author
+          author
           <input
             type="text"
-            value={ authorVal }
+            value={authorVal}
             name="Author"
-            onChange={ handleAuthorChange }
+            onChange={handleAuthorChange}
           />
         </div>
         <div>
-                    url
+          url
           <input
             type="text"
-            value={ urlVal }
+            value={urlVal}
             name="Url"
-            onChange={ handleUrlChange }
+            onChange={handleUrlChange}
           />
         </div>
         <button type="submit">create</button>
