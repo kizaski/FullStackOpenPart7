@@ -8,7 +8,7 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import { setNotificationWithTimeout } from './features/notificationSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchBlogs, createBlog, removeBlog } from './features/blogsSlice'
+import { fetchBlogs, createBlog } from './features/blogsSlice'
 import { setUser } from './features/userSlice'
 
 const App = () => {
