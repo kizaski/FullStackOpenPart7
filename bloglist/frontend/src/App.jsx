@@ -155,7 +155,7 @@ const App = () => {
       const blogs = await blogService.getAll()
       setBlogs(blogs.sort((a, b) => b.likes - a.likes))
     } catch (exception) {
-      console.log(`error updating blog, exceptio: ${exception}`)
+      console.log(`error updating blog, exception: ${exception}`)
     }
   }
 
