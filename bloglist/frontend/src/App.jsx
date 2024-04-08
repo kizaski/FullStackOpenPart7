@@ -14,7 +14,7 @@ const App = () => {
   const dispatch = useDispatch()
 
   const blogs = useSelector((state) => {
-    console.log('logging ', state)
+    // console.log('logging ', state)
     return state.blogs
   })
 
@@ -32,7 +32,6 @@ const App = () => {
 
   useEffect(() => {
     blogService.getAll().then((blogsObj) => {
-      console.log('logging ', blogs)
       const blogsArr = Array.from(blogsObj)
       dispatch(setBlogs(blogsArr.sort((a, b) => b.likes - a.likes)))
     })
