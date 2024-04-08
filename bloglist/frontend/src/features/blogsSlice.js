@@ -3,8 +3,9 @@ import blogsService from '../services/blogs'
 
 const initialState = []
 
-const setBlogs = createAsyncThunk('blogs/setBlogs', async () => {
-  const blogs = await blogsService.getAll()
+const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
+  let blogs = await blogsService.getAll()
+  blogs = blogs.sort((a, b) => b.likes - a.likes)
   return blogs
 })
 
@@ -12,26 +13,26 @@ const blogsSlice = createSlice({
   name: 'blogs',
   initialState,
   reducers: {
-    setBlogsAction(state, action) {
+    setBlogs(state, action) {
       return action.payload
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(setBlogs.pending, (state, action) => {
+      .addCase(fetchBlogs.pending, (state, action) => {
         // Handle pending state
       })
-      .addCase(setBlogs.fulfilled, (state, action) => {
+      .addCase(fetchBlogs.fulfilled, (state, action) => {
         return action.payload
       })
-      .addCase(setBlogs.rejected, (state, action) => {
+      .addCase(fetchBlogs.rejected, (state, action) => {
         // Handle rejected state
       })
   },
 })
 
-export const { setBlogsAction } = blogsSlice.actions
+export const { setBlogs: setBlogsAction } = blogsSlice.actions
 
-export { setBlogs }
+export { fetchBlogs }
 
 export default blogsSlice.reducer

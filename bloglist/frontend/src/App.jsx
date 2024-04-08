@@ -8,7 +8,7 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import { setNotificationWithTimeout } from './features/notificationSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { setBlogs, setBlogsAction } from './features/blogsSlice'
+import { fetchBlogs } from './features/blogsSlice'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -31,10 +31,7 @@ const App = () => {
   const blogFormRef = useRef()
 
   useEffect(() => {
-    blogService.getAll().then((blogsObj) => {
-      const blogsArr = Array.from(blogsObj)
-      dispatch(setBlogs(blogsArr.sort((a, b) => b.likes - a.likes)))
-    })
+    dispatch(fetchBlogs())
   }, [dispatch])
 
   useEffect(() => {
@@ -98,6 +95,7 @@ const App = () => {
     blogFormRef.current.toggleVisibility()
 
     try {
+      // TODO move to blogsSlice
       const newblog = await blogService.create({
         title: title,
         author: author,
@@ -105,8 +103,7 @@ const App = () => {
         user: user.id,
       })
 
-      setBlogs([...blogs, newblog])
-      dispatch(setBlogs(blogs))
+      dispatch(fetchBlogs(blogs))
 
       dispatch(
         setNotificationWithTimeout({
@@ -139,9 +136,9 @@ const App = () => {
       ) {
         return
       }
-      await blogService.remove(id)
-      const blogs = await blogService.getAll()
-      dispatch(setBlogs(blogs))
+      await blogService.remove(id) // TODO move to blogsSlice
+
+      dispatch(fetchBlogs(blogs))
 
       dispatch(
         setNotificationWithTimeout({
@@ -163,9 +160,8 @@ const App = () => {
 
   const handleUpdateBlog = async (blog) => {
     try {
-      await blogService.update(blog.id, blog)
-      const blogs = await blogService.getAll()
-      dispatch(setBlogs(blogs.sort((a, b) => b.likes - a.likes)))
+      await blogService.update(blog.id, blog) // TODO move to blogsSlice
+      dispatch(fetchBlogs())
     } catch (exception) {
       console.log(`error updating blog, exception: ${exception}`)
     }
