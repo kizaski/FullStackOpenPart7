@@ -1,4 +1,18 @@
-To start frontend run `npm run dev` and to run the backend `npm start` in [FullStackOpenPart4](https://github.com/kizaski/FullStackOpenPart4)
+# Backend Setup
+
+```
+cd backend
+npm install
+npm run start
+```
+
+# Frontend setup
+
+```
+cd frontend
+npm install
+npm run dev
+```
 
 # React + Vite
 
@@ -8,3 +22,7 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+```
+
+```

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchBlogs, createBlog } from './features/blogsSlice'
 import { setUser } from './features/userSlice'
 import { Link, Route, Routes } from 'react-router-dom'
+import './index.css'
 
 const App = () => {
   const dispatch = useDispatch()

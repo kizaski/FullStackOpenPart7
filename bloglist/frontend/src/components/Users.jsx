@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const Users = ({}) => {
-  return <div>lol</div>
+  return <div>users</div>
 }
 
 export default Users
