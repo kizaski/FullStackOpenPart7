@@ -22,4 +22,10 @@ commentsRouter.delete('/comments/deleteall', async (request, response) => {
   response.status(200).json()
 })
 
+commentsRouter.delete('/:blogId/comments', async (request, response) => {
+  let blogId = request.params.blogId
+  await Comment.findOneAndDelete({ blog: blogId })
+  response.status(200).json()
+})
+
 module.exports = commentsRouter
