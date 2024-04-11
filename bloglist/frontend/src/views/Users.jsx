@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import usersService from '../services/users'
+import { Link, Route, Routes } from 'react-router-dom'
 
 const Users = ({}) => {
   const [users, setUsers] = useState()
@@ -8,7 +9,6 @@ const Users = ({}) => {
     const fetchData = async () => {
       try {
         const response = await usersService.getAll()
-        console.log(response)
         setUsers(response)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -26,7 +26,9 @@ const Users = ({}) => {
           <div key={user.id}>
             <ul>
               <li>
-                <span>{user.username}</span>
+                <Link to={`/users/${user.id}`}>
+                  <span>{user.username}</span>
+                </Link>
               </li>
               <li>
                 name: <span>{user.name}</span>
