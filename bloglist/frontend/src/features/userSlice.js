@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import loginService from '../services/login'
+import blogService from '../services/blogs'
 
 const initialState = null
 
@@ -12,6 +13,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action) {
+      // console.log('action.payload: ', action.payload)
+      blogService.setToken(action.payload?.token)
       return action.payload
     },
   },

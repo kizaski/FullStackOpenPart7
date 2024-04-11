@@ -42,7 +42,6 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       dispatch(setUser(user))
-      blogService.setToken(user.token)
     }
   }, [dispatch])
 
@@ -51,7 +50,6 @@ const App = () => {
 
     window.localStorage.removeItem('loggedBlogappUser')
     dispatch(setUser(null))
-    blogService.setToken(null)
   }
 
   const handleLogin = async (event) => {
@@ -64,7 +62,6 @@ const App = () => {
       })
 
       window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
-      blogService.setToken(user.token)
 
       dispatch(setUser(user))
 
