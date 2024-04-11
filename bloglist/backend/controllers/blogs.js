@@ -12,7 +12,7 @@ blogsRouter.get('/:id', async (request, response) => {
     const blogId = request.params.id
 
     let user = await Blog.findById(blogId).populate({
-      path: 'blogs',
+      path: 'user',
     })
 
     if (!user) {
