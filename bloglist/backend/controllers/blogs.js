@@ -7,6 +7,25 @@ blogsRouter.get('/', async (request, response) => {
   response.status(200).json(blogs)
 })
 
+blogsRouter.get('/:id', async (request, response) => {
+  try {
+    const blogId = request.params.id
+
+    let user = await Blog.findById(blogId).populate({
+      path: 'blogs',
+    })
+
+    if (!user) {
+      return response.status(404).json({ message: 'Blog not found' })
+    }
+
+    response.status(200).json(user)
+  } catch (error) {
+    console.error('Error fetching user:', error)
+    response.status(500).json({ message: 'Internal Server Error' })
+  }
+})
+
 blogsRouter.post('/', middleware.userExtractor, async (request, response) => {
   const body = request.body
 

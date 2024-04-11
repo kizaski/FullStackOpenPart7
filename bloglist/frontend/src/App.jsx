@@ -2,6 +2,7 @@ import Notification from './components/Notification'
 import Users from './views/Users'
 import User from './views/User'
 import Home from './views/Home'
+import BlogView from './views/BlogView'
 import { useSelector } from 'react-redux'
 import { Link, Route, Routes } from 'react-router-dom'
 
@@ -28,7 +29,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
         <Route path="/users/:id" element={<User />} />
-        <Route path="/blogs/:id" element />
+        <Route path="/blogs/:id" element={<BlogView />} />
       </Routes>
     </div>
   )

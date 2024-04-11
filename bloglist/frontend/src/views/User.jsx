@@ -24,11 +24,15 @@ const User = ({}) => {
     <div key={id}>
       <h1>{user?.username}</h1>
       <h2>added blogs</h2>
-      <div>
+      <ul>
         {user?.blogs.map((blog) => (
-          <div key={blog.id}>{blog.title}</div>
+          <li key={blog.id}>
+            <Link to={`/blogs/${blog.id}`}>
+              <span>{blog.title}</span>
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }
