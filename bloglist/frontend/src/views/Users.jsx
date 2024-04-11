@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import usersService from '../services/users'
-import User from '../components/User'
 
 const Users = ({}) => {
   const [users, setUsers] = useState()
@@ -24,12 +23,19 @@ const Users = ({}) => {
       <div>users:</div>
       <div>
         {users?.map((user) => (
-          <User
-            key={user.id}
-            username={user.username}
-            name={user.name}
-            blogs={user.blogs}
-          />
+          <div key={user.id}>
+            <ul>
+              <li>
+                <span>{user.username}</span>
+              </li>
+              <li>
+                name: <span>{user.name}</span>
+              </li>
+              <li>
+                blogs created: <span>{user.blogs.length}</span>
+              </li>
+            </ul>
+          </div>
         ))}
       </div>
     </div>
