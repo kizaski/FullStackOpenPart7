@@ -11,15 +11,15 @@ blogsRouter.get('/:id', async (request, response) => {
   try {
     const blogId = request.params.id
 
-    let user = await Blog.findById(blogId).populate({
+    let blog = await Blog.findById(blogId).populate({
       path: 'user',
     })
 
-    if (!user) {
+    if (!blog) {
       return response.status(404).json({ message: 'Blog not found' })
     }
 
-    response.status(200).json(user)
+    response.status(200).json(blog)
   } catch (error) {
     console.error('Error fetching user:', error)
     response.status(500).json({ message: 'Internal Server Error' })
