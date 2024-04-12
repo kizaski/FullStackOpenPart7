@@ -18,8 +18,8 @@ const Logout = () => {
 
   return (
     <div>
-      <div>
-        <div>{user.name} logged in.</div>
+      <div className="flex items-center">
+        <div className="mx-2">{user.name} logged in.</div>
         <button onClick={handleLogout}>logout</button>
       </div>
     </div>

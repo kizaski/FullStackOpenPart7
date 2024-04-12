@@ -3,6 +3,7 @@ import SignupForm from './components/SignupForm'
 import Togglable from './components/Togglable'
 import Logout from './components/Logout'
 import LoginForm from './components/LoginForm'
+import MobileNav from './components/MobileNav'
 import Users from './views/Users'
 import User from './views/User'
 import Home from './views/Home'
@@ -21,7 +22,7 @@ const App = () => {
     <div>
       <Notification message={notification.message} type={notification.type} />
 
-      <nav>
+      <nav className="mb-6 hidden items-center sm:flex">
         <Link className="mx-2" to="/">
           home
         </Link>
@@ -32,7 +33,7 @@ const App = () => {
           blogs
         </Link>
         {user === null ? (
-          <div>
+          <div className="flex">
             <Togglable buttonLabel="login" buttonHideLabel="cancel">
               <LoginForm />
             </Togglable>
@@ -44,6 +45,8 @@ const App = () => {
           <Logout />
         )}
       </nav>
+
+      <MobileNav />
 
       <Routes>
         <Route path="/" element={<Home />} />
