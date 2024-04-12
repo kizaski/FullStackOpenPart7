@@ -32,6 +32,19 @@ usersRouter.get('/:id', async (request, response) => {
 usersRouter.post('/', async (request, response) => {
   const { username, name, password } = request.body
 
+  if (
+    username === '' ||
+    username === null ||
+    username === undefined ||
+    password === '' ||
+    password === null ||
+    password === undefined
+  ) {
+    return response.status(400).json({
+      error: 'invalid username or password',
+    })
+  }
+
   if (password.length < 3) {
     return response
       .status(400)

@@ -10,7 +10,6 @@ const userLogin = createAsyncThunk('user/userLogin', async (credentials) => {
 })
 
 const userSignup = createAsyncThunk('user/userSignup', async (user) => {
-  console.log(user)
   return await userService.createUser(user)
 })
 

@@ -20,7 +20,8 @@ const LoginForm = () => {
         name,
       }
 
-      dispatch(userSignup(user))
+      const res = await dispatch(userSignup(user))
+      if (res.error) throw new Error(`${res.error}`)
 
       setUsername('')
       setPassword('')
