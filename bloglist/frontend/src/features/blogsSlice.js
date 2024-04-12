@@ -45,8 +45,6 @@ const blogsSlice = createSlice({
   },
 })
 
-export const { setBlogs: setBlogsAction } = blogsSlice.actions
-
 export { fetchBlogs, createBlog }
 
 export default blogsSlice.reducer
