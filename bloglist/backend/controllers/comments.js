@@ -8,6 +8,12 @@ commentsRouter.get('/:blogId/comments', async (request, response) => {
 })
 
 commentsRouter.post('/:blogId/comments', async (request, response) => {
+  const existingComments = await Comment.find({})
+
+  if (existingComments.length >= 20) {
+    await Comment.findByIdAndDelete(existingComments[0]._id)
+  }
+
   let blogId = request.params.blogId
   let newComment = new Comment({
     content: request.body.content,
