@@ -70,7 +70,7 @@ const BlogView = ({}) => {
 
   return (
     <div key={id} className="mx-6 max-w-md">
-      <h1>{blog?.title}</h1>
+      <h2>{blog?.title}</h2>
       <ul>
         <li className="my-2">
           <span className="font-bold">Author:</span> {blog?.author}

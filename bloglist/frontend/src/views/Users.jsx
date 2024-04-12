@@ -20,14 +20,16 @@ const Users = ({}) => {
 
   return (
     <div>
-      <div>users:</div>
+      <h2>Users:</h2>
       <div>
         {users?.map((user) => (
-          <div key={user.id}>
+          <div className="mx-10 max-w-md" key={user.id}>
             <ul>
               <li>
                 <Link to={`/users/${user.id}`}>
-                  <span>{user.username}</span>
+                  <span className="font-semibold underline">
+                    {user.username}
+                  </span>
                 </Link>
               </li>
               <li>
@@ -37,6 +39,7 @@ const Users = ({}) => {
                 blogs created: <span>{user.blogs.length}</span>
               </li>
             </ul>
+            <div className="flex-grow border-t border-gray-400 p-2"></div>
           </div>
         ))}
       </div>

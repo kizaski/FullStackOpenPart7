@@ -22,11 +22,11 @@ const User = ({}) => {
 
   return (
     <div key={id}>
-      <h1>{user?.username}</h1>
+      <h2>User: {user?.username}</h2>
       <h2>added blogs</h2>
       <ul>
         {user?.blogs.map((blog) => (
-          <li key={blog.id}>
+          <li className="m-2 mx-10 text-xl underline" key={blog.id}>
             <Link to={`/blogs/${blog.id}`}>
               <span>{blog.title}</span>
             </Link>
