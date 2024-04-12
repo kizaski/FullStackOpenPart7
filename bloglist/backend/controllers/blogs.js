@@ -27,6 +27,12 @@ blogsRouter.get('/:id', async (request, response) => {
 })
 
 blogsRouter.post('/', middleware.userExtractor, async (request, response) => {
+  const existingBlogs = await Blog.find({})
+
+  if (existingBlogs.length >= 10) {
+    await Blog.findByIdAndDelete(existingBlogs[0]._id)
+  }
+
   const body = request.body
 
   const user = request.user
