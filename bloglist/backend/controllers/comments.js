@@ -17,14 +17,14 @@ commentsRouter.post('/:blogId/comments', async (request, response) => {
   response.status(201).json(savedNewComment)
 })
 
-commentsRouter.delete('/comments/deleteall', async (request, response) => {
-  await Comment.deleteMany({})
-  response.status(200).json()
-})
+// commentsRouter.delete('/comments/deleteall', async (request, response) => {
+//   await Comment.deleteMany({})
+//   response.status(200).json()
+// })
 
-commentsRouter.delete('/:blogId/comments', async (request, response) => {
-  let blogId = request.params.blogId
-  await Comment.findOneAndDelete({ blog: blogId })
+commentsRouter.delete('/comments/:commentId', async (request, response) => {
+  let commentId = request.params.commentId
+  await Comment.findByIdAndDelete(commentId)
   response.status(200).json()
 })
 
