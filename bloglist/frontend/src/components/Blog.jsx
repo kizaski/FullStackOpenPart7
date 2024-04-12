@@ -28,7 +28,7 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
   return (
     <div className="pb-4">
       <div className="blog-title">
-        <Link className="mx-2" to={`/blogs/${blog.id}`}>
+        <Link className="mx-2 underline" to={`/blogs/${blog.id}`}>
           <span>{blog.title}</span>
         </Link>
         <button
@@ -45,7 +45,13 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
             {blog.url} <br />
           </div>
           <div className="blog-likes">
-            likes: <span>{likes}</span> <button onClick={addLike}>like</button>
+            likes: <span>{likes}</span>
+            <button
+              className="ml-3 rounded-md px-1 outline-double"
+              onClick={addLike}
+            >
+              like
+            </button>
             <br />
           </div>
           <div className="blog-author">
