@@ -5,6 +5,7 @@ import { Link, Route, Routes, useParams } from 'react-router-dom'
 import { setNotificationWithTimeout } from '../features/notificationSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { createComment, fetchComments } from '../features/commentsSlice'
+import { updateBlog } from '../features/blogsSlice'
 
 const BlogView = ({}) => {
   const { id } = useParams()
@@ -58,13 +59,22 @@ const BlogView = ({}) => {
     }
   }
 
+  const addLike = async () => {
+    const updatedBlog = {
+      ...blog,
+      likes: blog.likes + 1,
+    }
+    dispatch(updateBlog(updatedBlog))
+    setBlog(updatedBlog)
+  }
+
   return (
     <div key={id}>
       <h1>{blog?.title}</h1>
       <ul>
         <li>Author: {blog?.author}</li>
         <li>likes: {blog?.likes}</li>
-        <button>like</button>
+        <button onClick={addLike}>like</button>
         <li>url: {blog?.url}</li>
       </ul>
       <h2>comments</h2>

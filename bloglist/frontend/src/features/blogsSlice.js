@@ -20,6 +20,11 @@ const createBlog = createAsyncThunk(
   },
 )
 
+const updateBlog = createAsyncThunk('blogs/updateBlog', async (blog) => {
+  const newBlog = await blogsService.update(blog.id, blog)
+  return newBlog
+})
+
 const blogsSlice = createSlice({
   name: 'blogs',
   initialState,
@@ -45,6 +50,6 @@ const blogsSlice = createSlice({
   },
 })
 
-export { fetchBlogs, createBlog }
+export { fetchBlogs, createBlog, updateBlog }
 
 export default blogsSlice.reducer
