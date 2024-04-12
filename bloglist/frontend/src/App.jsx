@@ -19,17 +19,17 @@ const App = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <div>
+    <div className="min-h-screen bg-slate-800 text-gray-300">
       <Notification message={notification.message} type={notification.type} />
 
-      <nav className="mb-6 hidden items-center sm:flex">
-        <Link className="mx-2" to="/">
+      <nav className="mb-6 hidden items-start sm:flex">
+        <Link className="m-2 p-2 underline" to="/">
           home
         </Link>
-        <Link className="mx-2" to="/users">
+        <Link className="m-2 p-2 underline" to="/users">
           users
         </Link>
-        <Link className="mx-2" to="/">
+        <Link className="m-2 p-2 underline" to="/">
           blogs
         </Link>
         {user === null ? (

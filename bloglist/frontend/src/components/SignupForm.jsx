@@ -47,21 +47,23 @@ const LoginForm = () => {
 
   return (
     <div>
-      <h2>Signup</h2>
+      <h2 className="m-2">Signup</h2>
 
-      <form onSubmit={handleSubmit} id="signup-form">
-        <div>
-          <label>username</label>
+      <form className="mx-4" onSubmit={handleSubmit} id="signup-form">
+        <div className="my-2">
+          <label className="m-2">username</label>
           <input
+            className="rounded-md outline-double"
             value={username}
             onChange={(e) => {
               setUsername(e.target.value)
             }}
           />
         </div>
-        <div>
-          <label>password</label>
+        <div className="my-2">
+          <label className="m-2">password</label>
           <input
+            className="rounded-md outline-double"
             type="password"
             value={password}
             onChange={(e) => {
@@ -69,16 +71,19 @@ const LoginForm = () => {
             }}
           />
         </div>
-        <div>
-          <label>name</label>
+        <div className="my-2">
+          <label className="m-2">name</label>
           <input
+            className="rounded-md outline-double"
             value={name}
             onChange={(e) => {
               setName(e.target.value)
             }}
           />
         </div>
-        <button type="submit">signup</button>
+        <button className="rounded-md px-2 py-1 outline-double" type="submit">
+          signup
+        </button>
       </form>
     </div>
   )

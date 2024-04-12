@@ -73,8 +73,12 @@ const BlogView = ({}) => {
       <h1>{blog?.title}</h1>
       <ul>
         <li>Author: {blog?.author}</li>
-        <li>likes: {blog?.likes}</li>
-        <button onClick={addLike}>like</button>
+        <li>
+          <span>likes: {blog?.likes}</span>
+          <button className="mx-2" onClick={addLike}>
+            like
+          </button>
+        </li>
         <li>url: {blog?.url}</li>
       </ul>
       <h2>comments</h2>

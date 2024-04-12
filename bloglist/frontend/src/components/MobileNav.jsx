@@ -19,17 +19,17 @@ const MobileNav = () => {
     <div className="mb-6 flex sm:hidden">
       <Togglable buttonLabel="menu" buttonHideLabel="close">
         <nav className="flex flex-col">
-          <Link className="mx-2 my-2" to="/">
+          <Link className="m-2 p-2 underline" to="/">
             home
           </Link>
-          <Link className="mx-2 my-2" to="/users">
+          <Link className="m-2 p-2 underline" to="/users">
             users
           </Link>
-          <Link className="mx-2 my-2" to="/">
+          <Link className="m-2 p-2 underline" to="/">
             blogs
           </Link>
           {user === null ? (
-            <div className="mx-2 my-2">
+            <div className="m-2 p-2 underline">
               <Togglable buttonLabel="login" buttonHideLabel="cancel">
                 <LoginForm />
               </Togglable>

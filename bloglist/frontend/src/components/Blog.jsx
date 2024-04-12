@@ -26,18 +26,18 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
   }
 
   return (
-    <div style={blogStyle}>
+    <div>
       <div className="blog-title">
-        <Link to={`/blogs/${blog.id}`}>
+        <Link className="mx-2" to={`/blogs/${blog.id}`}>
           <span>{blog.title}</span>
         </Link>
+        <button onClick={() => setVisible(!visible)}>
+          {visible ? 'hide' : 'show'}
+        </button>
       </div>
-      <button onClick={() => setVisible(!visible)}>
-        {visible ? 'hide' : 'show'}
-      </button>
       <br />
       {visible && (
-        <div>
+        <div className="p-2">
           <div>
             {blog.url} <br />
           </div>
