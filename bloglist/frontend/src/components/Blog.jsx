@@ -42,7 +42,15 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
       {visible && (
         <div className="p-2">
           <div>
-            {blog.url} <br />
+            <a
+              className="after:content-['↗️']"
+              target="_blank"
+              rel="noreferrer"
+              href={blog.url}
+            >
+              {blog.url}
+            </a>{' '}
+            <br />
           </div>
           <div className="blog-likes">
             likes: <span>{likes}</span>

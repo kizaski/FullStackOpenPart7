@@ -87,7 +87,15 @@ const BlogView = ({}) => {
           </button>
         </li>
         <li className="my-2">
-          <span className="font-bold">url:</span> {blog?.url}
+          <span className="font-bold">url:</span>{' '}
+          <a
+            className="after:content-['↗️']"
+            target="_blank"
+            rel="noreferrer"
+            href={blog?.url}
+          >
+            {blog?.url}
+          </a>{' '}
         </li>
       </ul>
       <h2>comments</h2>
