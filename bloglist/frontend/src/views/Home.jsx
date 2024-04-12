@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import Blog from '../components/Blog'
 import Notification from '../components/Notification'
 import LoginForm from '../components/LoginForm'
+import SignupForm from '../components/SignupForm'
 import Togglable from '../components/Togglable'
 import NewBlogForm from '../components/NewBlogForm'
 import Users from './Users'
@@ -158,15 +159,20 @@ const App = () => {
   return (
     <div>
       {user === null ? (
-        <Togglable buttonLabel="login" buttonHideLabel="cancel">
-          <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
-        </Togglable>
+        <div>
+          <Togglable buttonLabel="login" buttonHideLabel="cancel">
+            <LoginForm
+              username={username}
+              password={password}
+              handleUsernameChange={({ target }) => setUsername(target.value)}
+              handlePasswordChange={({ target }) => setPassword(target.value)}
+              handleSubmit={handleLogin}
+            />
+          </Togglable>
+          <Togglable buttonLabel="signup" buttonHideLabel="cancel">
+            <SignupForm />
+          </Togglable>
+        </div>
       ) : (
         <div>
           <div>
