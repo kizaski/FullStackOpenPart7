@@ -26,8 +26,6 @@ const App = () => {
 
   const notification = useSelector((state) => state.notification)
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
@@ -45,39 +43,6 @@ const App = () => {
       dispatch(setUser(user))
     }
   }, [dispatch])
-
-  const handleLogout = async (event) => {
-    event.preventDefault()
-
-    window.localStorage.removeItem('loggedBlogappUser')
-    dispatch(setUser(null))
-  }
-
-  const handleLogin = async (event) => {
-    event.preventDefault()
-
-    try {
-      const user = await loginService.login({
-        username,
-        password,
-      })
-
-      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
-
-      dispatch(setUser(user))
-
-      setUsername('')
-      setPassword('')
-    } catch (exception) {
-      dispatch(
-        setNotificationWithTimeout({
-          message: 'Wrong credentials',
-          type: 'error',
-          timeout: 3000,
-        }),
-      )
-    }
-  }
 
   const handleNewBlog = async (event) => {
     event.preventDefault()
@@ -160,25 +125,21 @@ const App = () => {
     <div>
       {user === null ? (
         <div>
-          <Togglable buttonLabel="login" buttonHideLabel="cancel">
+          {/* <Togglable buttonLabel="login" buttonHideLabel="cancel">
             <LoginForm
               username={username}
               password={password}
-              handleUsernameChange={({ target }) => setUsername(target.value)}
-              handlePasswordChange={({ target }) => setPassword(target.value)}
+              handleUsernameChange={asd}
+              handlePasswordChange={asd}
               handleSubmit={handleLogin}
             />
-          </Togglable>
-          <Togglable buttonLabel="signup" buttonHideLabel="cancel">
+          </Togglable> */}
+          {/* <Togglable buttonLabel="signup" buttonHideLabel="cancel">
             <SignupForm />
-          </Togglable>
+          </Togglable> */}
         </div>
       ) : (
         <div>
-          <div>
-            <div>{user.name} logged in.</div>
-            <button onClick={handleLogout}>logout</button>
-          </div>
           <Togglable
             buttonLabel="new blog"
             buttonHideLabel="cancel"
