@@ -61,7 +61,7 @@ const LoginForm = () => {
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button className="rounded-md px-2 py-1 outline-double" type="submit">
+        <button className="rounded-md p-2 outline-double" type="submit">
           login
         </button>
       </form>

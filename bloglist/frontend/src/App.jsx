@@ -22,7 +22,7 @@ const App = () => {
     <div className="min-h-screen bg-slate-800 text-gray-300">
       <Notification message={notification.message} type={notification.type} />
 
-      <nav className="mb-6 hidden items-start sm:flex">
+      <nav className="hidden items-start sm:flex">
         <Link className="m-2 p-2 underline" to="/">
           home
         </Link>
@@ -42,11 +42,15 @@ const App = () => {
             </Togglable>
           </div>
         ) : (
-          <Logout />
+          <div className="m-2 flex p-2 ">
+            <Logout />
+          </div>
         )}
       </nav>
 
       <MobileNav />
+
+      <div className="flex-grow border-t border-gray-400 p-2"></div>
 
       <Routes>
         <Route path="/" element={<Home />} />

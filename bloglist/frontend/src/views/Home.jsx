@@ -123,22 +123,7 @@ const App = () => {
 
   return (
     <div>
-      {user === null ? (
-        <div>
-          {/* <Togglable buttonLabel="login" buttonHideLabel="cancel">
-            <LoginForm
-              username={username}
-              password={password}
-              handleUsernameChange={asd}
-              handlePasswordChange={asd}
-              handleSubmit={handleLogin}
-            />
-          </Togglable> */}
-          {/* <Togglable buttonLabel="signup" buttonHideLabel="cancel">
-            <SignupForm />
-          </Togglable> */}
-        </div>
-      ) : (
+      {user !== null && (
         <div>
           <Togglable
             buttonLabel="new blog"
@@ -158,7 +143,8 @@ const App = () => {
         </div>
       )}
 
-      <h2>blogs</h2>
+      <h2>Blogs</h2>
+      <div className="flex-grow border-t border-gray-400 p-2"></div>
       <div id="blogs-list">
         {blogs.map((blog) => (
           <Blog

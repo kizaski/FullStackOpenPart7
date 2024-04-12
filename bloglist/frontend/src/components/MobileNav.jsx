@@ -16,7 +16,7 @@ const MobileNav = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <div className="mb-6 flex sm:hidden">
+    <div className="flex sm:hidden">
       <Togglable buttonLabel="menu" buttonHideLabel="close">
         <nav className="flex flex-col">
           <Link className="m-2 p-2 underline" to="/">

@@ -2,5 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+@layer base {
+  input {
+    @apply text-gray-800;
+  }
+  h2 {
+    @apply text-2xl;
+    @apply p-6;
+  }
 }

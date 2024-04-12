@@ -26,12 +26,15 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
   }
 
   return (
-    <div>
+    <div className="pb-4">
       <div className="blog-title">
         <Link className="mx-2" to={`/blogs/${blog.id}`}>
           <span>{blog.title}</span>
         </Link>
-        <button onClick={() => setVisible(!visible)}>
+        <button
+          className="rounded-md px-2 outline-double"
+          onClick={() => setVisible(!visible)}
+        >
           {visible ? 'hide' : 'show'}
         </button>
       </div>
@@ -51,7 +54,7 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
           {user && blog.user && blog.user.username === user.username && (
             <div>
               <button
-                className="blog-delete-btn"
+                className="blog-delete-btn m-2 rounded-md px-2 py-1 outline-double"
                 onClick={() => deleteBlog(blog.id, blog)}
               >
                 delete blog
@@ -61,6 +64,7 @@ const Blog = ({ blog, deleteBlog, updateBlog, user }) => {
           )}
         </div>
       )}
+      <div className="flex-grow border-t border-gray-400 p-2"></div>
     </div>
   )
 }
